@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Authorized - Copy Token</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Barlow:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.8/css/uikit.css">
+</head>
+
+<body>
+    <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+        <div class="uk-width-1-1">
+            <div class="uk-container">
+                <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                    <div class="uk-width-1-1@m">
+                        <div
+                            class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                            <h3 class="uk-card-title uk-text-center">Google Authorized</h3>
+                            <p>Recipient of Verification Code from Authorized Redirect URI - Google Client ID OAuth 2.0
+                            </p>
+                            <div class="uk-margin">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: link"></span>
+                                    <input id="code" class="uk-input uk-form-large" type="text" readonly="">
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <button id="copy" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Copy</button>
+                            </div>
+                            <div class="uk-text-small uk-text-center">
+                                &copy; 2020 - sProDev
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.8/js/uikit.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.8/js/uikit-icons.js"></script>
+    <script>
+        (function () {
+            function copy(element) {
+                return function () {
+                    document.execCommand('copy', false, element.select());
+                }
+            }
+
+            var url_string = window.location.href,
+                url = new URL(url_string),
+                code = url.searchParams.get('code'),
+                inputCode = document.querySelector('#code'),
+                copyButton = document.querySelector('#copy'),
+                copyCode = copy(inputCode);
+
+            inputCode.value = code;
+            copyButton.addEventListener('click', copyCode, false)
+        }())
+    </script>
+</body>
+
+</html>
